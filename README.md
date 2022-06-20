@@ -1,11 +1,12 @@
 # React-gallery
 
-In the project directory, you can run:
+DEMO: https://follower90.github.io/react-gallery
 
-### `npm start`
+### Run
+`npm run start`
 
-In the static html site you can pass using window.
+### Embed to html
 
-### embed to html
+In the static html site you can pass using window
 
 `window.initialState = [ { name: 'DSC_1.jpg', url: 'https://picsum.photos/1800/1600', id: 0} ];`
