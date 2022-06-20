@@ -1,0 +1,56 @@
+.container {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0, .3);
+
+  .control {
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .items {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    .scroll { display: flex }
+    .item {
+      border: 2px solid transparent;
+      display: flex;
+      cursor: pointer;
+
+      &.active {
+        border-color: #fff;
+      }
+
+      img {
+        width: 100%;
+        object-fit: contain;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .container {
+    height: 15%;
+  }
+  .container .items .scroll {
+    height: 75%;
+  }
+}
