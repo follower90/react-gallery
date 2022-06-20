@@ -1,7 +1,6 @@
 import styles from './styles.module.scss';
 
-function Index({ list, onNext, onPrev, onSetCurrent }) {
-    const lim = 2;
+function Controls({ list, current, onNext, onPrev, onSetCurrent }) {
     const onNextClick = (e) => {
         onNext();
         e.stopPropagation();
@@ -23,7 +22,7 @@ function Index({ list, onNext, onPrev, onSetCurrent }) {
             <div className={styles.items}>
                 <div className={styles.scroll}>
                     {list.map((file,i) => {
-                        const className = (lim === i) ? `${styles.item} ${styles.active}` : styles.item;
+                        const className = (i === current) ? `${styles.item} ${styles.active}` : styles.item;
                         return <div key={i} className={className} onClick={(e) => onImageClick(e, file.id)}>
                             <img alt={file.name} src={file.url} />
                         </div>
@@ -33,7 +32,6 @@ function Index({ list, onNext, onPrev, onSetCurrent }) {
             <div className={styles.control} onClick={onNextClick}>{'→'}</div>
         </div>
     );
-
 }
 
-export default Index;
+export default Controls;

@@ -1,16 +1,15 @@
 import {useEffect} from "react";
-
 import Portal from "./../portal";
 import PreviewImage from "./../image";
-import Index from "./../controls";
+import Controls from "./../controls";
 import styles from './styles.module.scss';
 
+const lim = 3;
 
-function Preview({ list, current, onClose, onNext, onPrev, onSetCurrent }) {
+const infiniteList = (current, list) => {
     const displayList = [];
 
     displayList.push(list[current]);
-    const lim = 2;
 
     const fromStart = list.slice(0, current).splice(-lim);
     const fromEnd = fromStart.length === lim ? [] : list.slice((lim - fromStart.length) * -1);
@@ -22,6 +21,11 @@ function Preview({ list, current, onClose, onNext, onPrev, onSetCurrent }) {
     const pushfromStart = list.slice(0, lim - pushfromEnd.length);
 
     displayList.push(...[...pushfromEnd, ...pushfromStart]);
+    return displayList;
+}
+
+function Preview({ list, current, onClose, onNext, onPrev, onSetCurrent }) {
+    const displayList = infiniteList(current, list);
 
     useEffect(() => {
         const fn = e => {
@@ -39,7 +43,7 @@ function Preview({ list, current, onClose, onNext, onPrev, onSetCurrent }) {
         <Portal>
         <div className={styles.container} onClick={onClose}>
             <PreviewImage image={list[current]} />
-            <Index onNext={onNext} onPrev={onPrev} onSetCurrent={onSetCurrent} list={displayList} />
+            <Controls current={lim} onNext={onNext} onPrev={onPrev} onSetCurrent={onSetCurrent} list={displayList} />
         </div>
         </Portal>
     );
