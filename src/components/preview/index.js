@@ -42,7 +42,7 @@ function Preview({ list, current, onClose, onNext, onPrev, onSetCurrent }) {
     return (
         <Portal>
         <div className={styles.container} onClick={onClose}>
-            <PreviewImage image={list[current]} />
+            <PreviewImage image={list[current]} num={current + 1} total={list.length}/>
             <Controls current={lim} onNext={onNext} onPrev={onPrev} onSetCurrent={onSetCurrent} list={displayList} />
         </div>
         </Portal>

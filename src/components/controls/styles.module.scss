@@ -2,9 +2,8 @@
   height: 15%;
   width: 100%;
   display: flex;
-  position: absolute;
-  bottom: 0;
   background: rgb(0, 0, 0, .3);
+  justify-content: space-between;
 
   .control {
     color: #fff;
@@ -20,7 +19,6 @@
 
   .items {
     display: flex;
-    flex: 1;
     overflow: hidden;
     position: relative;
     align-items: center;
@@ -31,6 +29,7 @@
       border: 2px solid transparent;
       display: flex;
       cursor: pointer;
+      width: 10vw;
 
       &.active {
         border-color: #fff;
@@ -46,7 +45,7 @@
 }
 
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 600px) {
   .container .items .scroll {
     height: 75%;
   }
