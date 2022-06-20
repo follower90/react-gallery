@@ -4,7 +4,7 @@ import PreviewImage from "./../image";
 import Controls from "./../controls";
 import styles from './styles.module.scss';
 
-const lim = 3;
+const lim = 2;
 
 const infiniteList = (current, list) => {
     const displayList = [];
