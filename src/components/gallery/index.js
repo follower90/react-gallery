@@ -1,23 +1,7 @@
 import {useEffect, useState} from "react";
 import Preview from "./../preview";
-import loadingImage from "./../../images/loading";
+import GalleryImage from "./../gallery-image";
 import styles from './styles.module.scss'
-
-
-function Image ({ name, url }) {
-    const [loaded, setLoaded] = useState(false);
-    const onLoad = () => {
-        setLoaded(true);
-    }
-
-    if (!loaded) return <>
-        <img alt="loading" src={loadingImage} className={styles.loading} />
-        <img alt={name} src={url} onLoad={onLoad} style={{ display:'none'}} />
-    </>;
-
-    return <img alt={name} src={url} />;
-}
-
 
 
 function Gallery() {
@@ -56,12 +40,18 @@ function Gallery() {
         <div className={styles.grid}>
             {files.map((file, i) => {
                 return (<div className={styles.item} key={i} onClick={() => onClick(i)}>
-                    <Image name={file.name} url={file.url} />
+                    <GalleryImage name={file.name} url={file.url} />
                     <div className={styles.overlay}>{file.name}</div>
                 </div>);
             })}
-            {preview && <Preview list={files} current={current} onClose={onClose} onNext={onNext} onPrev={onPrev}
-                               onSetCurrent={onSetCurrent}/>}
+            {preview && <Preview
+                list={files}
+                current={current}
+                onClose={onClose}
+                onNext={onNext}
+                onPrev={onPrev}
+                onSetCurrent={onSetCurrent}
+            />}
         </div>
     );
 }

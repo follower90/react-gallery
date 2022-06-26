@@ -2,12 +2,12 @@
   height: 15%;
   width: 100%;
   display: flex;
-  background: rgb(0, 0, 0, .3);
   justify-content: space-between;
 
   .control {
     color: #fff;
-    font-size: 36px;
+    font-size: 24px;
+    min-width: 4rem;
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -23,24 +23,32 @@
     position: relative;
     align-items: center;
     justify-content: center;
+    flex: 1;
 
-    .scroll { display: flex }
-    .item {
-      border: 2px solid transparent;
+    .scroll {
       display: flex;
-      cursor: pointer;
-      width: 10vw;
-
-      &.active {
-        border-color: #fff;
-      }
-
-      img {
-        width: 100%;
-        object-fit: contain;
+      flex: 1 1 auto;
+      height: 75%;
+      justify-content: center;
+      .item {
+        border: 2px solid transparent;
+        margin: 0 1vw;
+        display: flex;
         cursor: pointer;
+
+
+        &.active {
+          border-color: #fff;
+        }
+
+        img {
+          width: 100%;
+          object-fit: contain;
+          cursor: pointer;
+        }
       }
     }
+
   }
 }
 

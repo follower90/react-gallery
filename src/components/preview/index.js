@@ -1,14 +1,21 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import Portal from "./../portal";
 import PreviewImage from "./../image";
 import Controls from "./../controls";
 import styles from './styles.module.scss';
 
-const lim = 2;
+const LIMIT = 10;
 
-const infiniteList = (current, list) => {
+const getLim = (elements, maxElements) => Math.min(
+    elements - 1,
+    Math.floor(LIMIT / 2),
+    Math.floor((maxElements - 1) / 2),
+);
+
+const infiniteList = (current, list, lim) => {
+    if (lim === 0) return [list[current]];
+
     const displayList = [];
-
     displayList.push(list[current]);
 
     const fromStart = list.slice(0, current).splice(-lim);
@@ -25,7 +32,10 @@ const infiniteList = (current, list) => {
 }
 
 function Preview({ list, current, onClose, onNext, onPrev, onSetCurrent }) {
-    const displayList = infiniteList(current, list);
+    const [width, setWidth] = useState(window.innerWidth);
+    const maxElements = Math.round((width - 200) / 70);
+    const lim = getLim(list.length, maxElements);
+    const displayList = infiniteList(current, list, lim);
 
     useEffect(() => {
         const fn = e => {
@@ -36,15 +46,21 @@ function Preview({ list, current, onClose, onNext, onPrev, onSetCurrent }) {
 
         window.document.body.addEventListener('keyup', fn);
         return () => window.document.body.removeEventListener('keyup', fn);
+    }, [onClose, onSetCurrent, displayList, lim]);
 
-    }, [onClose, onSetCurrent, displayList]);
+    useEffect(() => {
+        const fn = () => setWidth(window.innerWidth);
+        window.addEventListener('resize', fn);
+        return () => window.removeEventListener('resize', fn);
+    }, []);
 
     return (
         <Portal>
-        <div className={styles.container} onClick={onClose}>
-            <PreviewImage image={list[current]} num={current + 1} total={list.length}/>
-            <Controls current={lim} onNext={onNext} onPrev={onPrev} onSetCurrent={onSetCurrent} list={displayList} />
-        </div>
+            <div className={styles.overlay} />
+            <div className={styles.container}>
+                <PreviewImage image={list[current]} num={current + 1} total={list.length} onClose={onClose}/>
+                <Controls current={lim} onNext={onNext} onPrev={onPrev} onSetCurrent={onSetCurrent} list={displayList} />
+            </div>
         </Portal>
     );
 

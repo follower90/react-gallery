@@ -1,24 +1,13 @@
 import styles from './styles.module.scss';
 
 function Controls({ list, current, onNext, onPrev, onSetCurrent }) {
-    const onNextClick = (e) => {
-        onNext();
-        e.stopPropagation();
-    }
-
-    const onPrevClick = (e) => {
-        onPrev();
-        e.stopPropagation();
-    }
-
-    const onImageClick = (e, id) => {
-        onSetCurrent(id);
-        e.stopPropagation();
-    }
+    const onNextClick = (e) => onNext() && e.stopPropagation();
+    const onPrevClick = (e) => onPrev() && e.stopPropagation();
+    const onImageClick = (e, id) => onSetCurrent(id) && e.stopPropagation();
 
     return (
         <div className={styles.container}>
-            <div className={styles.control} onClick={onPrevClick}>{'←'}</div>
+            <div className={styles.control} onClick={onPrevClick}>{'◀'}</div>
             <div className={styles.items}>
                 <div className={styles.scroll}>
                     {list.map((file,i) => {
@@ -29,7 +18,7 @@ function Controls({ list, current, onNext, onPrev, onSetCurrent }) {
                     })}
                 </div>
             </div>
-            <div className={styles.control} onClick={onNextClick}>{'→'}</div>
+            <div className={styles.control} onClick={onNextClick}>{'▶'}</div>
         </div>
     );
 }

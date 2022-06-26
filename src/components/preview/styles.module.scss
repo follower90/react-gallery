@@ -2,10 +2,19 @@
   position: fixed;
   display: flex;
   flex-direction: column;
-  background: rgb(0, 0, 0, .9);
+  background: rgba(0, 0, 0, .5);
+  left: 25px;
+  top: 25px;
+  width: calc(100vw - 50px);
+  height: calc(100vh - 50px);
+  z-index: 9999999999999;
+}
+.overlay {
+  position: fixed;
+  background: rgba(0, 0, 0, .8);
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 9999999999999;
+  z-index: 999999999999;
 }
