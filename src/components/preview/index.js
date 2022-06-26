@@ -4,7 +4,7 @@ import PreviewImage from "./../image";
 import Controls from "./../controls";
 import styles from './styles.module.scss';
 
-const LIMIT = 10;
+const LIMIT = 8;
 
 const getLim = (elements, maxElements) => Math.min(
     elements - 1,
