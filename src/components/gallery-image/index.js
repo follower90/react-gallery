@@ -8,12 +8,11 @@ function GalleryImage ({ name, url }) {
         setLoaded(true);
     }
 
-    if (!loaded) return <>
-        <img alt="loading" src={loadingImage} className={styles.loading} />
-        <img alt={name} src={url} onLoad={onLoad} style={{ display:'none'}} />
-    </>;
+    return <div className={styles.container}>
+        <img alt="loading" src={loadingImage} className={`${loaded ? styles.loaded : styles.loading}`} />
+        <img alt={name} src={url} onLoad={onLoad} />
+    </div>;
 
-    return <img alt={name} src={url} />;
 }
 
 export default GalleryImage;

@@ -13,7 +13,7 @@ function Controls({ list, current, onNext, onPrev, onSetCurrent }) {
                     {list.map((file,i) => {
                         const className = (i === current) ? `${styles.item} ${styles.active}` : styles.item;
                         return <div key={i} className={className} onClick={(e) => onImageClick(e, file.id)}>
-                            <img alt={file.name} src={file.url} />
+                            <img alt={file.name} src={file.preview_url || file.url} />
                         </div>
                     })}
                 </div>

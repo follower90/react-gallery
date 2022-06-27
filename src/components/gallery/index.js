@@ -40,7 +40,7 @@ function Gallery() {
         <div className={styles.grid}>
             {files.map((file, i) => {
                 return (<div className={styles.item} key={i} onClick={() => onClick(i)}>
-                    <GalleryImage name={file.name} url={file.url} />
+                    <GalleryImage name={file.name} url={file.preview_url || file.url} />
                     <div className={styles.overlay}>{file.name}</div>
                 </div>);
             })}
