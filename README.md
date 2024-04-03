@@ -1,6 +1,7 @@
 # React-gallery
 
-React gallery with a lightbox
+React gallery with a lightbox.
+Written with React, though can be used independently on any website.
 
 DEMO: https://follower90.github.io/react-gallery
 
